@@ -63,21 +63,25 @@ window.addEventListener("load", () => {
 
 document.querySelector("#busca").addEventListener("keyup", ()=> {
     let busca = document.querySelector("#busca").value
-    let heroisFiltrados = herois_nao_obtidos.filter((heroi)=>{
+    let heroisnaoobtidosFiltrados = herois_nao_obtidos.filter((heroi)=>{
         return heroi.nome.toLowerCase().includes(busca.toLowerCase())
 
     })
-    filtrar(heroisFiltrados)
+    let heroisobetidosFiltrados = herois_obtidos.filter((heroi)=>{
+        return heroi.nome.toLowerCase().includes(busca.toLowerCase())
+
+    })
+    filtrar(heroisnaoobtidosFiltrados,heroisobetidosFiltrados)
 })
 
-function filtrar(herois_nao_obtidos){
+function filtrar(herois_nao_obtidos,herois_obtidos){
     document.querySelector("#nao-obtidos").innerHTML = ""
     document.querySelector("#obtidos").innerHTML = ""  
     herois_nao_obtidos.forEach((heroi) =>{
         document.querySelector("#nao-obtidos").innerHTML 
                     += createCard(heroi)
     })
-        herois_obtidos.forEach((heroi) =>{
+    herois_obtidos.forEach((heroi) =>{
         document.querySelector("#obtidos").innerHTML 
                     += createCard(heroi)
     })
